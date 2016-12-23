@@ -3,6 +3,7 @@
 
     session_start();
     unset($_SESSION['userName']);
+    unset($_SESSION['admin']);
 
 
     if (!isset($_POST['userName']) || empty($_POST['userName'])) {
@@ -37,6 +38,8 @@
         if($admin == NULL) {
             print('{"result":"fail"}');
         } else if($admin['admin'] == 0) {
+            $_SESSION['userName'] = $userName;
+            $_SESSION['admin'] = 0;
             print('{"result": "success"}');
         } else {
             print('{"result":"fail"}');
