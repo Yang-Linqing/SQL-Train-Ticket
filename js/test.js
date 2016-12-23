@@ -1,13 +1,11 @@
 $(document).ready(function() {
     		$.ajax({
 			type: "POST",
-			url: 'API/signup.php',
+			url: 'API/login.php',
 			dataType:"json",
 			data:{
                     "userName": "Linkin",
                     "pwd": "123",
-                    "name": "Linkin",
-                    "id": "130681199703205830"
             },
 			success: function(data){
 				if(data.result == "success"){
