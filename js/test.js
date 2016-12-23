@@ -1,10 +1,10 @@
 $(document).ready(function() {
     		$.ajax({
 			type: "POST",
-			url: 'API/login.php',
+			url: 'API/admin-signup.php',
 			dataType:"json",
 			data:{
-                    "userName": "Linkin",
+                    "userName": "LinkinYoung",
                     "pwd": "123",
             },
 			success: function(data){
