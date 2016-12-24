@@ -2,10 +2,13 @@
     include_once('config.php');
 
     session_start();
-    unset($_SESSION['userName']);
 
+    //if (!isset($_SESSION['userName']) || empty($_SESSION['userName'])) {
+	//	print('{"result": "Forbidden"}');
+    //    die();
+    //}
 
-    if (!isset($_POST['userName']) || empty($_POST['userName'])) {
+	if (!isset($_GET['station']) || empty($_GET['station'])) {
         die();
     }
 
@@ -18,26 +21,23 @@
 
 	try{
 		$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$dbh->beginTransaction();
 
-		//$stmt = $dbh->prepare("SELECT admin FROM user WHERE userName = :userName AND pwd = :pwd");
-		$stat=$_GET['station']
+		$stat=$_GET['station'];
 
-		if($stat = "all")
-		$station = $dbh->query("SELECT * FROM station);
-		else
-		$station = $dbh->query("SELECT arrival FROM train WHERE departure = :station ");
-		
-		$dbh->commit();
+		if($stat = "all"){
+		    $stmt = $dbh->query("SELECT * FROM station");
+		}
+		else{
+		    $stmt = $dbh->prepare("SELECT arrival FROM train WHERE departure = :station ");
+			$stmt->bindParam(':station', $station);
+			$station = $stat;
 
-		$stationDate = = $station->fetchALL(PDO::FETCH_ASSOC);
-		$stationTotal = count($stationData);
+		}
 
-		$result = array();
-		$result['result']='Succeeded';
-		$result['stationTotal'] = $stationTotal;
-		$result['stationDate'] = $stationDate;
-		print_r(json_encode($result));
+		$stmt->execute();
+
+		$stationData = $stmt->fetchALL(PDO::FETCH_ASSOC);
+		print(json_encode($stationData));
 	
 	}catch (Exception $e) { 
        $dbh->rollBack(); 
