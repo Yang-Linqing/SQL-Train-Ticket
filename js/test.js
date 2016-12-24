@@ -1,10 +1,11 @@
 $(document).ready(function() {
     		$.ajax({
-			type: "GET",
-			url: 'API/station.php',
+			type: "POST",
+			url: 'API/order.php',
 			dataType:"json",
 			data:{
-                    "station": "all"
+                    "trainNum": "G250",
+					"date": "2016-12-31"
             },
 			success: function(data){
 				if(data.result == "success"){
