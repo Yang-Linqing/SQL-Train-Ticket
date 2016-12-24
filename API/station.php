@@ -36,7 +36,7 @@
 		$result = array();
 		$result['result']='Succeeded';
 		$result['stationTotal'] = $stationTotal;
-		$result['stationTotal'] = $stationTotal;
+		$result['stationDate'] = $stationDate;
 		print_r(json_encode($result));
 	
 	}catch (Exception $e) { 
