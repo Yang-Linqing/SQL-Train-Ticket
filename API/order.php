@@ -8,11 +8,11 @@
     //    die();
     //}
 
-	if (!isset($_GET['trainNum']) || empty($_GET['trainNum'])) {
+	if (!isset($_POST['trainNum']) || empty($_GET['trainNum'])) {
         die();
     }
 
-	if (!isset($_GET['date']) || empty($_GET['date'])) {
+	if (!isset($_POST['date']) || empty($_GET['date'])) {
         die();
     }
 
@@ -27,8 +27,8 @@
 		$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$dbh->beginTransaction();
 
-		$trNu=$_GET['trainNum'];
-		$da=$_GET['date'];
+		$trNu=$_POST['trainNum'];
+		$da=$_POST['date'];
 
 		$stmt = $dbh->prepare("SELECT total FROM train WHERE trainNum = :trainNum");					
 		$stmt->bindParam(':trainNum', $trainNum);
