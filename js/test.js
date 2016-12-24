@@ -1,11 +1,10 @@
 $(document).ready(function() {
     		$.ajax({
-			type: "POST",
-			url: 'API/admin-login.php',
+			type: "GET",
+			url: 'API/station.php',
 			dataType:"json",
 			data:{
-                    "userName": "Linkin",
-                    "pwd": "123",
+                    "station": "all"
             },
 			success: function(data){
 				if(data.result == "success"){
