@@ -3,10 +3,10 @@
 
     session_start();
 
-    //if (!isset($_SESSION['userName']) || empty($_SESSION['userName'])) {
-	//	print('{"result": "Forbidden"}');
-    //    die();
-    //}
+    if (!isset($_SESSION['userName']) || empty($_SESSION['userName'])) {
+		    print('{"result": "Forbidden"}');
+        die();
+    }
 
 	if (!isset($_GET['station']) || empty($_GET['station'])) {
         die();
@@ -22,16 +22,15 @@
 	try{
 		$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		$stat=$_GET['station'];
+		$stat = $_GET['station'];
 
-		if($stat = "all"){
-		    $stmt = $dbh->query("SELECT * FROM station");
+		if($stat == "all"){
+		    $stmt = $dbh->prepare("SELECT * FROM station");
 		}
 		else{
-		    $stmt = $dbh->prepare("SELECT arrival FROM train WHERE departure = :station ");
+		    $stmt = $dbh->prepare("SELECT arrival AS station FROM train WHERE departure = :station ");
 			$stmt->bindParam(':station', $station);
 			$station = $stat;
-
 		}
 
 		$stmt->execute();

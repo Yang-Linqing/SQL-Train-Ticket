@@ -3,16 +3,24 @@
 
     session_start();
 
-    //if (!isset($_SESSION['userName']) || empty($_SESSION['userName'])) {
-	//	print('{"result": "Forbidden"}');
-    //    die();
-    //}
+    if (!isset($_SESSION['userName']) || empty($_SESSION['userName'])) {
+		print('{"result": "Forbidden"}');
+        die();
+    }
+
 
 	if (!isset($_POST['trainNum']) || empty($_GET['trainNum'])) {
         die();
     }
 
 	if (!isset($_POST['date']) || empty($_GET['date'])) {
+
+	if (!isset($_POST['trainNum']) || empty($_POST['trainNum'])) {
+        die();
+    }
+
+	if (!isset($_POST['date']) || empty($_POST['date'])) {
+
         die();
     }
 
@@ -32,30 +40,61 @@
 
 		$stmt = $dbh->prepare("SELECT total FROM train WHERE trainNum = :trainNum");					
 		$stmt->bindParam(':trainNum', $trainNum);
+		$trainNum = $trNu;
+		$stmt->execute();
+		$total = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		$stmt = $dbh->prepare("SELECT sum FROM dailytotal WHERE trainNum = :trainNum AND date = :date");					
+		$stmt->bindParam(':trainNum', $trainNum);
 		$stmt->bindParam(':date', $date);
 		$trainNum = $trNu;
 		$date = $da;
-		$total = $stmt->fetchALL(PDO::FETCH_ASSOC);
+		$stmt->execute();
+		$sum = $stmt->fetch(PDO::FETCH_ASSOC);
 
-		$stm = $dbh->prepare("SELECT sum FROM dailytotal WHERE trainNum = :trainNum");					
-		$stm->bindParam(':trainNum', $trainNum);
-		$stm->bindParam(':date', $date);
-		$trainNum = $trNu;
-		$date = $da;
-		$sum = $stmt->fetchALL(PDO::FETCH_ASSOC);
-		
-		$dbh->commit();
-		
-		$remain = $total - $sum;
-
+		$remain = $total['total'] - $sum['sum'];
 		if($remain<=0){
+			$dbh->rollBack(); 
 			print('{"result": "fail"}');
             die();
 		}
 		else{
-			$stm = $dbh->prepare("UPDATE dailytotal SET sum=sum+1 WHERE trainNum = :trainNum");
-			$stm->bindParam(':trainNum', $trainNum);
+			$stmt = $dbh->prepare("INSERT INTO dailytotal(date, trainNum, sum) VALUES (:date, :trainNum, 1) ON DUPLICATE KEY UPDATE sum=sum+1");
+			$stmt->bindParam(':trainNum', $trainNum);
+			$stmt->bindParam(':date', $date);
 			$trainNum = $trNu;
+			$date = $da;
+			$stmt->execute();
+			$stmt = $dbh->prepare("INSERT INTO orders(userName, trainNum, date) VALUES (:userName, :trainNum, :date)");
+			$stmt->bindParam(':userName', $userName);
+			$stmt->bindParam(":trainNum", $trainNum);
+			$stmt->bindParam(":date", $date);
+			$userName = $_SESSION['userName'];
+			$trainNum = $_POST['trainNum'];
+			$date = $_POST['date'];
+			$stmt->execute();
+
+			$stmt = $dbh->prepare("SELECT total FROM train WHERE trainNum = :trainNum");					
+			$stmt->bindParam(':trainNum', $trainNum);
+			$trainNum = $trNu;
+			$stmt->execute();
+			$total = $stmt->fetch(PDO::FETCH_ASSOC);
+
+			$stmt = $dbh->prepare("SELECT sum FROM dailytotal WHERE trainNum = :trainNum AND date = :date");					
+			$stmt->bindParam(':trainNum', $trainNum);
+			$stmt->bindParam(':date', $date);
+			$trainNum = $trNu;
+			$date = $da;
+			$stmt->execute();
+			$sum = $stmt->fetch(PDO::FETCH_ASSOC);
+
+			$remain = $total['total'] - $sum['sum'];
+			if($remain<=0){
+				$dbh->rollBack(); 
+				print('{"result": "fail"}');
+				die();
+			}
+			$dbh->commit();
 			print('{"result": "success"}');
 		}
 		

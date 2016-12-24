@@ -1,11 +1,11 @@
 $(document).ready(function() {
     		$.ajax({
 			type: "POST",
-			url: 'API/admin-login.php',
+			url: 'API/order.php',
 			dataType:"json",
 			data:{
-                    "userName": "Linkin",
-                    "pwd": "123",
+                    "trainNum": "G250",
+					"date": "2016-12-31"
             },
 			success: function(data){
 				if(data.result == "success"){
