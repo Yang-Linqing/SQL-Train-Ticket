@@ -1,5 +1,5 @@
 {
-    "result": "success",
+    "result": "fail",
     "userName": "LinkinYoung",
-    "admin": 0
+    "admin": 1
 }
