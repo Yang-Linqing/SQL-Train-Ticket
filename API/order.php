@@ -8,19 +8,11 @@
         die();
     }
 
-
-	if (!isset($_POST['trainNum']) || empty($_GET['trainNum'])) {
-        die();
-    }
-
-	if (!isset($_POST['date']) || empty($_GET['date'])) {
-
 	if (!isset($_POST['trainNum']) || empty($_POST['trainNum'])) {
         die();
     }
 
 	if (!isset($_POST['date']) || empty($_POST['date'])) {
-
         die();
     }
 
@@ -97,10 +89,6 @@
 			$dbh->commit();
 			print('{"result": "success"}');
 		}
-		
-		
-		//print(json_encode($trainData));
-	
 	}catch (Exception $e) { 
        $dbh->rollBack(); 
        print('{"result":"Failed"}'); 
