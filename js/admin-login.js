@@ -14,7 +14,7 @@ function userLogin() {
             },
 			success: function(data){
 				if(data.result == "success"){
-					location.href='order.html';
+					location.href='admin.html';
 				}
 				else Materialize.toast("用户名或密码错误", 6000);
 			},
