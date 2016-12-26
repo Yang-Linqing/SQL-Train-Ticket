@@ -1,3 +1,1 @@
-{
-    "station": ["station1", "station2"]
-}
+[{"station": "Beijing"}, {"station": "Tianjin"}, {"station": "Guangzhou"}, {"station": "Hebei"}]
