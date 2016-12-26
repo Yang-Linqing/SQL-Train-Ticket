@@ -60,11 +60,11 @@
 			$trainNum = $trNu;
 			$date = $da;
 			$stmt->execute();
-			$stmt = $dbh->prepare("DELETE FROM orders WHERE userName = :userName AND trainNum = :trainNum AND date = :date");
-			$stmt->bindParam(':userName', $userName);
+			$stmt = $dbh->prepare("DELETE FROM orders WHERE trainNum = :trainNum AND date = :date");
+		//	$stmt->bindParam(':userName', $userName);
 			$stmt->bindParam(":trainNum", $trainNum);
 			$stmt->bindParam(":date", $date);
-			$userName = $_SESSION['userName'];
+		//	$userName = $_SESSION['userName'];
 			$trainNum = $_POST['trainNum'];
 			$date = $_POST['date'];
 			$stmt->execute();
