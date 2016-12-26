@@ -24,19 +24,19 @@
 	$dbh->beginTransaction();
 
 //-----------------------------------------------------------------------------------
-//ÅÐ¶ÏÊÇ²»ÊÇ¹ÜÀíÔ±
+//åˆ¤æ–­æ˜¯ä¸æ˜¯ç®¡ç†å‘˜
 	$stmt = $dbh->prepare("SELECT admin FROM user WHERE userName = :userName");
 	$stmt->bindParam(':userName', $userName);
 	$userName = $_SESSION['userName'];
 	$stmt->execute();
 	$admin = $stmt->fetch(PDO::FETCH_ASSOC);
 
-	if($admin['admin'] == 0 ){      //Èç¹û¸ÃÓÃ»§²»ÊÇ¹ÜÀíÔ±
+	if($admin['admin'] == 0 ){      //å¦‚æžœè¯¥ç”¨æˆ·ä¸æ˜¯ç®¡ç†å‘˜
 		print('{"result":"Database Fatal"');
         die();
 	}	
 //---------------------------------------------------------------------------------------
-	//É¾³ýÏàÓ¦µÄÏûÏ¢
+	//åˆ é™¤ç›¸åº”çš„æ¶ˆæ¯
 	$stmt = $dbh->prepare("DELETE  FROM train WHERE trainNum = :trainNum");
 	$stmt->bindParam(":trainNum", $trainNum);
 	$trainNum = $_POST['trainNum'];
@@ -49,6 +49,5 @@
        $dbh->rollBack(); 
        print('{"result":"Failed"}'); 
        print($e->getMessage());
-
-
+}
 ?>
