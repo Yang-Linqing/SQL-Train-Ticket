@@ -18,21 +18,20 @@
 	try{
 		$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		$stmt = $dbh->prepare("SELECT traainNum,date,departure,departTime,arrival,arrivTime FROM train WHERE trainNum IN(SELECT trainNum FROM orders WHERE userName = :userName)");
+		$stmt = $dbh->prepare("SELECT train.trainNum,date,departure,departTime,arrival,arrivTime FROM  orders,train WHERE train.trainNum = orders.trainNum AND userName = :userName");
 		$stmt->bindParam(':userName', $userName);
 		$userName = $_SESSION['userName'];
 		$stmt->execute();
 
-		$userOrderData = $stmt->fetchALL(PDO::FETCH_ASSOC);
-		print(json_encode($userOrderData));
-    
-    print('{"result": "success"}');
-	
+		$train = $stmt->fetchALL(PDO::FETCH_ASSOC);
+  
+    $result = array();
+    $result['result'] = 'success';
+    $result['train'] = $train;
+    print(json_encode($result));
+	 
 	}catch (Exception $e) { 
-       $dbh->rollBack(); 
        print('{"result":"Failed"}'); 
-       print($e->getMessage());
-
-
-
+       print($e->getMessage()); 
+	}
 ?>
