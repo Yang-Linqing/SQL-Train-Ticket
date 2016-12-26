@@ -8,7 +8,7 @@
         die();
     }
 
-	try {
+  	try {
         $dbh = new PDO("mysql:host={$db_config['host']};dbname={$db_config['dbName']}", $db_config['user'], $db_config['pwd'], [PDO::ATTR_PERSISTENT => true, PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"]);
     } catch (PDOExveption $e) {
         print('{"result":"Database Fatal"');
@@ -20,33 +20,36 @@
 	$dbh->beginTransaction();
 
 //-----------------------------------------------------------------------------------
-//ÅÐ¶ÏÊÇ²»ÊÇ¹ÜÀíÔ±
+//åˆ¤æ–­æ˜¯ä¸æ˜¯ç®¡ç†å‘˜
 	$stmt = $dbh->prepare("SELECT admin FROM user WHERE userName = :userName");
 	$stmt->bindParam(':userName', $userName);
 	$userName = $_SESSION['userName'];
 	$stmt->execute();
 	$admin = $stmt->fetch(PDO::FETCH_ASSOC);
 
-	if($admin['admin'] == 0 ){      //Èç¹û¸ÃÓÃ»§²»ÊÇ¹ÜÀíÔ±
+	if($admin['admin'] == 0 ){      //å¦‚æžœè¯¥ç”¨æˆ·ä¸æ˜¯ç®¡ç†å‘˜
 		print('{"result":"Database Fatal"');
         die();
 	}	
 //---------------------------------------------------------------------------------------
-	//²éÕÒÏàÓ¦µÄÏûÏ¢
-	$stmt = $dbh->prepare("SELECT traainNum,date,departure,departTime,arrival,arrivTime FROM train WHERE trainNum IN(SELECT trainNum FROM orders WHERE userName = :userName)");
+	//æŸ¥æ‰¾ç›¸åº”çš„æ¶ˆæ¯
+	$stmt = $dbh->prepare("SELECT * FROM train ");
 	$stmt->bindParam(':userName', $userName);
 	$userName = $_SESSION['userName'];
 	$stmt->execute();
-	$admOrderData = $stmt->fetchALL(PDO::FETCH_ASSOC);
-	print(json_encode($admOrderData));
-
+  
+	$train = $stmt->fetchALL(PDO::FETCH_ASSOC);
+  
+  $result = array();
+  $result['result'] = 'success';
+  $result['train'] = $train;
+  print(json_encode($result));
 	$dbh->commit();
-	print('{"result": "success"}');
+
 
 	}catch (Exception $e) { 
-       $dbh->rollBack(); 
        print('{"result":"Failed"}'); 
        print($e->getMessage());
-
-
+       }
 ?>
+
