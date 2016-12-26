@@ -11,10 +11,6 @@
 	if (!isset($_POST['trainNum']) || empty($_POST['trainNum'])) {
         die();
     }
-
-	if (!isset($_POST['date']) || empty($_POST['date'])) {
-        die();
-    }
 	
 	if (!isset($_POST['departure']) || empty($_POST['departure'])) {
         die();
@@ -52,19 +48,19 @@
 	$dbh->beginTransaction();
 
 //-----------------------------------------------------------------------------------
-//判断是不是管理员
+//鍒ゆ柇鏄笉鏄鐞嗗憳
 	$stmt = $dbh->prepare("SELECT admin FROM user WHERE userName = :userName");
 	$stmt->bindParam(':userName', $userName);
 	$userName = $_SESSION['userName'];
 	$stmt->execute();
 	$admin = $stmt->fetch(PDO::FETCH_ASSOC);
 
-	if($admin['admin'] == 0 ){      //如果该用户不是管理员
+	if($admin['admin'] == 0 ){      //濡傛灉璇ョ敤鎴蜂笉鏄鐞嗗憳
 		print('{"result":"Database Fatal"');
         die();
 	}	
 //---------------------------------------------------------------------------------------
-	//更新和修改相应的消息
+	//鏇存柊鍜屼慨鏀圭浉搴旂殑娑堟伅
 	$stmt = $dbh->prepare("INSERT INTO train(trainNum, departure, departTime, arrival, arrivTime, price, total) VALUES(:trainNum, :departure, :departTime, :arrival, :arrivTime, :price, :total)");
 	$stmt->bindParam(":trainNum", $trainNum);
 	$trainNum = $_POST['trainNum'];
@@ -87,8 +83,7 @@
 
 	}catch (Exception $e) { 
        $dbh->rollBack(); 
-       print('{"result":"Failed"}'); 
+       print('{"result":"fail"}'); 
        print($e->getMessage());
-
-
+      }
 ?>
