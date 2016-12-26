@@ -1,38 +1,108 @@
 <!doctype html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>火fei车ji票管理系统</title>
-<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link href="css/materialize.css" rel="stylesheet" type="text/css">
-<link href="css/style.css" rel="stylesheet" type="text/css">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<head>
+    <meta charset="UTF-8">
+    <title>火fei车ji票管理系统</title>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/materialize.css" rel="stylesheet" type="text/css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
 <body>
 
-<header>
-    <nav class="nav">
-        <div class="nav-wrapper container">
-            <a href="#" class="brand-logo">火车票订票系统</a>
-            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="index.html"><i class="material-icons right">exit_to_app</i><span class="welcome-username">Logout</span></a></li>
-            </ul>
-            <ul class="side-nav" id="mobile-demo">
-                <li><a href="index.html"><i class="material-icons right">exit_to_app</i><span class="welcome-username">Logout</span></a></li>
-            </ul>
-        </div>
-    </nav>
-</header>
-<main>
-</main>
-<footer>
-</footer>
+    <header>
+        <nav class="nav">
+            <div class="nav-wrapper container">
+                <a href="#" class="brand-logo">火车票订票系统</a>
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="index.html"><i class="material-icons right">exit_to_app</i><span class="welcome-username">Logout</span></a></li>
+                </ul>
+                <ul class="side-nav" id="mobile-demo">
+                    <li><a href="index.html"><i class="material-icons right">exit_to_app</i><span class="welcome-username">Logout</span></a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
 
-<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="js/materialize.js"></script>
-<script type="text/javascript" src="js/nav.js"></script>
+    <main>
+        <div class="container">
+            <!-- Page Content goes here -->
+            <table class="highlight bordered centered">
+                <thead>
+                    <tr>
+                        <th data-field="trainNum">车次</th>
+                        <th data-field="departure">始发站</th>
+                        <th data-field="arrival">终点站</th>
+                        <th data-field="departTime">始发时间</th>
+                        <th data-field="arriveTime">到站时间</th>
+                        <th data-field="remain">座位数量</th>
+                    </tr>
+                </thead>
+
+                <tbody id="table-content">
+                </tbody>
+            </table>
+
+            <div class="fixed-action-btn">
+                <a class="btn-floating btn-large red" href="#modal1">
+                    <i class="large material-icons">add</i>
+                </a>
+            </div>
+
+            <!-- Modal Structure -->
+            <div id="modal1" class="modal">
+                <div class="modal-content">
+                    <h5>添加车次信息</h5>
+
+                    <div class="input-field col s12 m6">
+                        <select id="departure-option">
+                                    <!--由JS来填充选项-->
+                                </select>
+                        <label>选择始发站</label>
+                    </div>
+
+                    <div class="input-field col s12 m6">
+                        <select id="arrival-option">
+                                    <!--由JS来填充选项-->
+                                </select>
+                        <label>选择终点站</label>
+                    </div>
+
+                    <div class="input-field col s6 m6">
+                        <input id="departTime" type="text" class="validate">
+                        <label for="departTime">输入始发时间</label>
+                    </div>
+
+                    <div class="input-field col s6 m6">
+                        <input id="arriveTime" type="text" class="validate">
+                        <label for="arriveTime">输入到站时间</label>
+                    </div>
+
+                    <div class="input-field col s6 m6">
+                        <input id="remain" type="text" class="validate">
+                        <label for="remain">输入余票数量</label>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">确认</a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+    </footer>
+
+    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.js"></script>
+    <script type="text/javascript" src="js/nav.js"></script>
+    <script type="text/javascript" src="js/admin.js"></script>
 </body>
+
 </html>
