@@ -6,6 +6,7 @@
     <title>火fei车ji票管理系统</title>
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="css/materialize.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
@@ -55,14 +56,8 @@
                 </tbody>
             </table>
 
-            <div class="fixed-action-btn">
-                <a class="btn-floating btn-large red" id="confirm-add">
-                    <i class="large material-icons">add</i>
-                </a>
-            </div>
-
             <!-- Modal Structure -->
-            <div id="modal1" class="modal">
+            <div id="add-modal" class="modal">
                 <div class="modal-content">
                     <h5>添加车次信息</h5>
 
@@ -104,8 +99,8 @@
                     <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id="confirm-add">确认</a>
                 </div>
             </div>
-
         </div>
+        <a href="#add-modal" class="btn-floating btn-large waves-effect waves-light" id="FAT-corner"><i class="material-icons">add</i></a>
     </main>
 
     <footer class="page-footer">
@@ -140,6 +135,7 @@
     <script type="text/javascript" src="js/materialize.js"></script>
     <script type="text/javascript" src="js/nav.js"></script>
     <script type="text/javascript" src="js/admin.js"></script>
+    <script type="text/javascript" src="js/footer.js"></script>
 </body>
 
 </html>

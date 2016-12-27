@@ -8,13 +8,14 @@ $(document).ready(function () {
                 + '</td><td class="departureList">' + data.train[i].departure
                 + '</td><td class="arrivalList">' + data.train[i].arrival
                 + '</td><td class="departTimeList">' + data.train[i].departTime
-                + '</td><td class="arriveTimeList>' + data.train[i].arriveTime
-                + '</td><td class="totalList>' + data.train[i].total
-                + '</td><td>' + '<a class="btn-floating btn waves-effect waves-light blue confirm-edit"><i class="material-icons">mode_edit</i></a>'
-                + '</td><td>' + '<a class="btn-floating btn waves-effect waves-light red confirm-delete"><i class="material-icons">delete</i></a>'
+                + '</td><td class="arriveTimeList">' + data.train[i].arriveTime
+                + '</td><td class="totalList">' + data.train[i].total
+                + '</td><td>' + '<a class="confirm-edit"><i class="material-icons">mode_edit</i></a>'
+                + '</td><td>' + '<a class="confirm-delete"><i class="material-icons">delete</i></a>'
                 + '</td></tr>';
             $("#table-content").append(row);
         }
+        FATinit();
     });
 
     $.getJSON("API/station.php", function (data) {
