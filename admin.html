@@ -57,16 +57,19 @@
                 <div class="modal-content">
                     <h5>添加车次信息</h5>
 
+                    <div class="input-field col s6 m6">
+                        <input id="trainNum" type="text" class="validate">
+                        <label for="trainNum">输入车次号</label>
+                    </div>
+
                     <div class="input-field col s12 m6">
                         <select id="departure-option">
-                                    <!--由JS来填充选项-->
                                 </select>
                         <label>选择始发站</label>
                     </div>
 
                     <div class="input-field col s12 m6">
                         <select id="arrival-option">
-                                    <!--由JS来填充选项-->
                                 </select>
                         <label>选择终点站</label>
                     </div>
@@ -89,7 +92,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">确认</a>
+                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id="confirm-edit">确认</a>
                 </div>
             </div>
 

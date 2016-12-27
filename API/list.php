@@ -6,7 +6,7 @@
             "departure": "station1",
             "departTime": "13:30",
             "arrival": "station2",
-            "arriveTime": "16:30"
+            "arriveTime": "16:30",
             "price": 250,
             "total": 2
         }, {
