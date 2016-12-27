@@ -34,7 +34,7 @@
                 <li>
                     <div class="collapsible-header"><i class="material-icons">info_outline</i>管理车次信息</div>
                     <div class="collapsible-body">
-                    <p>此处为所有列车车次列表，管理员可以添加，编辑或删除车次信息。</p>
+                        <p>此处为所有列车车次列表，管理员可以添加，编辑或删除车次信息。</p>
                     </div>
                 </li>
             </ul>
@@ -43,7 +43,6 @@
                 <thead>
                     <tr>
                         <th data-field="trainNum">车次</th>
-                        <th data-field="date">日期</th>
                         <th data-field="departure">始发站</th>
                         <th data-field="arrival">终点站</th>
                         <th data-field="departTime">始发时间</th>
@@ -57,7 +56,7 @@
             </table>
 
             <div class="fixed-action-btn">
-                <a class="btn-floating btn-large red" href="#modal1">
+                <a class="btn-floating btn-large red" id="confirm-add">
                     <i class="large material-icons">add</i>
                 </a>
             </div>
@@ -68,49 +67,74 @@
                     <h5>添加车次信息</h5>
 
                     <div class="input-field col s6 m6">
-                        <input id="trainNum" type="text" class="validate">
+                        <input id="input-trainNum" type="text" class="validate">
                         <label for="trainNum">输入车次号</label>
                     </div>
 
                     <div class="input-field col s12 m6">
-                        <select id="departure-option">
+                        <select id="input-departure-option">
                                 </select>
                         <label>选择始发站</label>
                     </div>
 
                     <div class="input-field col s12 m6">
-                        <select id="arrival-option">
+                        <select id="input-arrival-option">
                                 </select>
                         <label>选择终点站</label>
                     </div>
 
                     <div class="input-field col s6 m6">
-                        <input id="departTime" type="text" class="validate">
+                        <input id="input-departTime" type="text" class="validate">
                         <label for="departTime">输入始发时间</label>
                     </div>
 
                     <div class="input-field col s6 m6">
-                        <input id="arriveTime" type="text" class="validate">
+                        <input id="input-arriveTime" type="text" class="validate">
                         <label for="arriveTime">输入到站时间</label>
                     </div>
 
                     <div class="input-field col s6 m6">
-                        <input id="remain" type="text" class="validate">
+                        <input id="input-remain" type="text" class="validate">
                         <label for="remain">输入余票数量</label>
                     </div>
 
                 </div>
 
                 <div class="modal-footer">
-                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id="confirm-edit">确认</a>
+                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id="confirm-add">确认</a>
                 </div>
             </div>
 
         </div>
     </main>
 
-    <footer>
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">System Info</h5>
+                    <p class="grey-text text-lighten-4">This is a train ticket booking system, but the model is nearer to flight ticket booking system. The main
+                        purpose of this system is to build a sell system with SQL.</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Links</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="http://materializecss.com">Materialize</a></li>
+                        <li><a class="grey-text text-lighten-3" href="http://jquery.com">jQuery</a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://www.apachefriends.org/zh_cn/index.html">XAMPP</a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://material.io">Material Design</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                © 2016 杨林青 李铖昊 易鑫
+                <a class="grey-text text-lighten-4 right" href="https://github.com/LinkinYoung/SQL-Train-Ticket">GitHub</a>
+            </div>
+        </div>
     </footer>
+
 
     <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="js/materialize.js"></script>
