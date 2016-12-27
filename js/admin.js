@@ -10,6 +10,7 @@ $(document).ready(function () {
                 + '</td><td class="departTimeList">' + data.train[i].departTime
                 + '</td><td class="arriveTimeList">' + data.train[i].arriveTime
                 + '</td><td class="totalList">' + data.train[i].total
+                + '</td><td class="priceList">' + data.train[i].price
                 + '</td><td>' + '<a href="#edit-modal" class="edit-button"><i class="material-icons">mode_edit</i></a>'
                 + '</td><td>' + '<a href="#" class="delete-button"><i class="material-icons">delete</i></a>'
                 + '</td></tr>';
@@ -23,6 +24,7 @@ $(document).ready(function () {
             localStorage.editDepartTime = $(this).parent().siblings('.departTimeList').html();
             localStorage.editArriveTime = $(this).parent().siblings('.arriveTimeList').html();
             localStorage.editTotal = $(this).parent().siblings('.totalList').html();
+            localStorage.editPrice = $(this).parent().siblings('.priceList').html();
             prepareEdit();
         });
         $('.delete-button').click(function() {
@@ -37,7 +39,9 @@ $(document).ready(function () {
         FATinit();
     });
 
-    $.getJSON("API/station.php", function (data) {
+    $.getJSON("API/station.php",{
+        "station": "all"
+    } , function (data) {
         var option;
         var n;
         for (i in data) {
@@ -63,6 +67,7 @@ function adminAdd() {
             "departTime": $('#add-departTime').val(),
             "arrival": $('#add-arrival-option').val(),
             "arriveTime": $('#add-arriveTime').val(),
+            "price": $('#add-price').val(),
             "total": $('#add-remain').val()
         },
         success: function (data) {
@@ -79,6 +84,7 @@ function adminAdd() {
 function prepareEdit() {
     $('#edit-trainNum').val(localStorage.editTrainNum);
     $('#edit-remain').val(localStorage.editTotal);
+    $('#edit-price').val(localStorage.editPrice);
     $('#edit-departure-option').val(localStorage.editDeparture);
     $('#edit-departure-option').material_select();
     $('#edit-arrival-option').val(localStorage.editArrival);

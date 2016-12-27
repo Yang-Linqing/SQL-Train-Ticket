@@ -9,30 +9,37 @@
     }
 
 	if (!isset($_POST['trainNum']) || empty($_POST['trainNum'])) {
+		print('{"result":"fail1"}'); 
         die();
     }
 	
 	if (!isset($_POST['departure']) || empty($_POST['departure'])) {
+		print('{"result":"fail2"}'); 
         die();
     }
 
 	if (!isset($_POST['departTime']) || empty($_POST['departTime'])) {
+		print('{"result":"fail3"}'); 
         die();
     }
 
 	if (!isset($_POST['arrival']) || empty($_POST['arrival'])) {
+		print('{"result":"fail4"}'); 
         die();
     }
 
-	if (!isset($_POST['arrivTime']) || empty($_POST['arrivTime'])) {
+	if (!isset($_POST['arriveTime']) || empty($_POST['arriveTime'])) {
+		print('{"result":"fail5"}'); 
         die();
     }
 
 	if (!isset($_POST['price']) || empty($_POST['price'])) {
+		print('{"result":"fail6"}'); 
         die();
     }
 
 	if (!isset($_POST['total']) || empty($_POST['total'])) {
+		print('{"result":"fail7"}'); 
         die();
     }
 
@@ -62,7 +69,7 @@
 	}	
 //---------------------------------------------------------------------------------------
 	//更新和修改相应的消息
-	$stmt = $dbh->prepare("UPDATE train SET departure = :departure, departTime = :departTime, arrival = :arrival, arrivTime = :arrivTime, price = :price, total = :total WHERE trainNum = :trainNum");
+	$stmt = $dbh->prepare("UPDATE train SET departure = :departure, departTime = :departTime, arrival = :arrival, arriveTime = :arriveTime, price = :price, total = :total WHERE trainNum = :trainNum");
 	$stmt->bindParam(":trainNum", $trainNum);
 	$trainNum = $_POST['trainNum'];
 	$stmt->bindParam(":departure", $departure);
@@ -71,8 +78,8 @@
 	$departTime = $_POST['departTime'];
 	$stmt->bindParam(":arrival", $arrival);
 	$arrival = $_POST['arrival'];
-	$stmt->bindParam(":arrivTime", $arrivTime);
-	$arrivTime = $_POST['arrivTime'];
+	$stmt->bindParam(":arriveTime", $arriveTime);
+	$arriveTime = $_POST['arriveTime'];
 	$stmt->bindParam(":price", $price);
 	$price = $_POST['price'];
 	$stmt->bindParam(":total", $total);

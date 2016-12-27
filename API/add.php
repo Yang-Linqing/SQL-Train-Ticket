@@ -9,30 +9,37 @@
     }
 
 	if (!isset($_POST['trainNum']) || empty($_POST['trainNum'])) {
+		print('{"result":"fail1"}'); 
         die();
     }
 	
 	if (!isset($_POST['departure']) || empty($_POST['departure'])) {
+		print('{"result":"fail2"}'); 
         die();
     }
 
 	if (!isset($_POST['departTime']) || empty($_POST['departTime'])) {
+		print('{"result":"fail3"}'); 
         die();
     }
 
 	if (!isset($_POST['arrival']) || empty($_POST['arrival'])) {
+		print('{"result":"fail4"}'); 
         die();
     }
 
-	if (!isset($_POST['arrivTime']) || empty($_POST['arrivTime'])) {
+	if (!isset($_POST['arriveTime']) || empty($_POST['arriveTime'])) {
+		print('{"result":"fail5"}'); 
         die();
     }
 
 	if (!isset($_POST['price']) || empty($_POST['price'])) {
+		print('{"result":"fail6"}'); 
         die();
     }
 
 	if (!isset($_POST['total']) || empty($_POST['total'])) {
+		print('{"result":"fail7"}'); 
         die();
     }
 
@@ -61,7 +68,7 @@
 	}	
 //---------------------------------------------------------------------------------------
 	//更新和修改相应的消息
-	$stmt = $dbh->prepare("INSERT INTO train(trainNum, departure, departTime, arrival, arrivTime, price, total) VALUES(:trainNum, :departure, :departTime, :arrival, :arrivTime, :price, :total)");
+	$stmt = $dbh->prepare("INSERT INTO train(trainNum, departure, departTime, arrival, arriveTime, price, total) VALUES(:trainNum, :departure, :departTime, :arrival, :arriveTime, :price, :total)");
 	$stmt->bindParam(":trainNum", $trainNum);
 	$trainNum = $_POST['trainNum'];
 	$stmt->bindParam(":departure", $departure);
@@ -70,8 +77,8 @@
 	$departTime = $_POST['departTime'];
 	$stmt->bindParam(":arrival", $arrival);
 	$arrival = $_POST['arrival'];
-	$stmt->bindParam(":arrivTime", $arrivTime);
-	$arrivTime = $_POST['arrivTime'];
+	$stmt->bindParam(":arriveTime", $arriveTime);
+	$arriveTime = $_POST['arriveTime'];
 	$stmt->bindParam(":price", $price);
 	$price = $_POST['price'];
 	$stmt->bindParam(":total", $total);
@@ -84,6 +91,6 @@
 	}catch (Exception $e) { 
        $dbh->rollBack(); 
        print('{"result":"fail"}'); 
-       print($e->getMessage());
+       //print($e->getMessage());
       }
 ?>
