@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>订单查询</title>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/materialize.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+
+    <header>
+        <nav class="nav">
+            <div class="nav-wrapper container">
+                <a href="#" class="brand-logo">火车票订票系统</a>
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="order.html">订票</a></li>
+                    <li class="active"><a href="list.html">订单查询</a></li>
+                    <li><a href="index.html"><i class="material-icons right">exit_to_app</i><span class="welcome-username">Logout</span></a></li>
+                </ul>
+                <ul class="side-nav" id="mobile-demo">
+                    <li><a href="order.html">订票</a></li>
+                    <li class="active"><a href="list.html">订单查询</a></li>
+                    <li><a href="index.html"><i class="material-icons right">exit_to_app</i><span class="welcome-username">Logout</span></a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+
+            <ul class="collapsible" data-collapsible="accordion">
+                <li>
+                    <div class="collapsible-header active"><i class="material-icons">info_outline</i>管理已完成订单</div>
+                    <div class="collapsible-body">
+                        <p>此处为已经完成的车票订单列表，你可以选择退票或继续购票。</p>
+                    </div>
+                </li>
+            </ul>
+
+            <table class="highlight bordered centered">
+                <thead>
+                    <tr>
+                        <th data-field="trainNum">车次</th>
+                        <th data-field="date">日期</th>
+                        <th data-field="departure">始发站</th>
+                        <th data-field="arrival">终点站</th>
+                        <th data-field="departTime">始发时间</th>
+                        <th data-field="arriveTime">到站时间</th>
+                    </tr>
+                </thead>
+
+                <tbody id="table-content">
+                </tbody>
+            </table>
+
+        </div>
+        <a href="order.html" class="btn-floating btn-large waves-effect waves-light" id="FAT-corner"><i class="material-icons">add</i></a>
+    </main>
+
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">System Info</h5>
+                    <p class="grey-text text-lighten-4">This is a train ticket booking system, but the model is nearer to flight ticket booking system. The main
+                        purpose of this system is to build a sell system with SQL.</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Links</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="http://materializecss.com">Materialize</a></li>
+                        <li><a class="grey-text text-lighten-3" href="http://jquery.com">jQuery</a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://www.apachefriends.org/zh_cn/index.html">XAMPP</a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://material.io">Material Design</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                © 2016 杨林青 李铖昊 易鑫
+                <a class="grey-text text-lighten-4 right" href="https://github.com/LinkinYoung/SQL-Train-Ticket">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+
+    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.js"></script>
+    <script type="text/javascript" src="js/nav.js"></script>
+    <script type="text/javascript" src="js/list.js"></script>
+    <script type="text/javascript" src="js/footer.js"></script>
+</body>
+
+</html>

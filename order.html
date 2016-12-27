@@ -1,0 +1,184 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>火fei车ji票售票系统</title>
+<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="css/materialize.css" rel="stylesheet" type="text/css">
+<link href="css/style.css" rel="stylesheet" type="text/css">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+
+<body>
+
+<header>
+    <nav class="nav">
+        <div class="nav-wrapper container">
+            <a href="#" class="brand-logo">火车票订票系统</a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li class="active"><a href="order.html">订票</a></li>
+                <li><a href="list.html">订单查询</a></li>
+                <li><a href="index.html"><i class="material-icons right">exit_to_app</i><span class="welcome-username">Logout</span></a></li>
+            </ul>
+            <ul class="side-nav" id="mobile-demo">
+                <li class="active"><a href="order.html">订票</a></li>
+                <li><a href="list.html">订单查询</a></li>
+                <li><a href="index.html"><i class="material-icons right">exit_to_app</i><span class="welcome-username">Logout</span></a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<main class="container">
+    <ul class="collapsible popout" data-collapsible="accordion">
+        <li>
+            <div class="collapsible-header active" id="select-departure">1 选择出发地点<span id="departure-show"></span></div>
+            <div class="collapsible-body">
+                <div class="container in-collapsible">
+                    <div class="row" id="departure-select">
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="collapsible-header" id="select-arrival">2 选择目的地<span id="arrival-show"></span></div>
+            <div class="collapsible-body">
+                <div class="container in-collapsible">
+                    <div class="row" id="arrival-select">
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="collapsible-header" id="select-date">3 选择日期<span id="date-show"></span></div>
+            <div class="collapsible-body">
+                <div class="container in-collapsible">
+                    <div class="row">
+                        <input type="date" class="datepicker" id="date-selection">
+                        <a href="#"><i class="material-icons right" id="date-ok">done</i></a>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="collapsible-header" id="select-train">4 选择车次</div>
+            <div class="collapsible-body">
+                <div class="container in-collapsible">
+                    <table class="highlight">
+                        <thead>
+                        <tr>
+                            <th>车次</th>
+                            <th>出发时间</th>
+                            <th>到达时间</th>
+                            <th>票价</th>
+                            <th>余票量</th>
+                        </tr>
+                        </thead>
+                        <tbody id="train-list">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="collapsible-header" id="confirm-order">5 确认订单</div>
+            <div class="collapsible-body blue-gray">
+                <div class="container in-collapsible">
+                    <div class="row">
+                        <h1 class="col s6 m4" id="train-number-confirm"></h1>
+                        </br>
+                        <p class="col s6 m4" id="departure-confirm"></p>
+                        <p class="col s6 m4" id="depart-time-confirm"></p>
+                        <p class="col s6 m4" id="arrival-confirm"></p>
+                        <p class="col s6 m4" id="arrive-time-confirm"></p>
+                        <p class="col s6 m4" id="date-confirm"></p>
+                    </div>
+                    <div class="row">
+                        <div class="right">
+                            <a class="waves-effect waves-light btn" id="order-confirm">¥<span id="price-confirm"></span></a>
+                        </div>
+                        <div id="loading" class="right" hidden>
+                            <div class="preloader-wrapper small active">
+                                <div class="spinner-layer spinner-blue">
+                                    <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                    </div><div class="gap-patch">
+                                    <div class="circle"></div>
+                                    </div><div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                    </div>
+                                </div>
+
+                                <div class="spinner-layer spinner-red">
+                                    <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                    </div><div class="gap-patch">
+                                    <div class="circle"></div>
+                                    </div><div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                    </div>
+                                </div>
+
+                                <div class="spinner-layer spinner-yellow">
+                                    <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                    </div><div class="gap-patch">
+                                    <div class="circle"></div>
+                                    </div><div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                    </div>
+                                </div>
+
+                                <div class="spinner-layer spinner-green">
+                                    <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                    </div><div class="gap-patch">
+                                    <div class="circle"></div>
+                                    </div><div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="success" hidden>
+                            <i class="material-icons right" id="date-ok">check_circle</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</main>
+<footer class="page-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">System Info</h5>
+                <p class="grey-text text-lighten-4">This is a train ticket booking system, but the model is nearer to flight ticket booking system. The main purpose of this system is to build a sell system with SQL.</p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                    <li><a class="grey-text text-lighten-3" href="http://materializecss.com">Materialize</a></li>
+                    <li><a class="grey-text text-lighten-3" href="http://jquery.com">jQuery</a></li>
+                    <li><a class="grey-text text-lighten-3" href="https://www.apachefriends.org/zh_cn/index.html">XAMPP</a></li>
+                    <li><a class="grey-text text-lighten-3" href="https://material.io">Material Design</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            © 2016 杨林青 李铖昊 易鑫
+            <a class="grey-text text-lighten-4 right" href="https://github.com/LinkinYoung/SQL-Train-Ticket">GitHub</a>
+        </div>
+    </div>
+</footer>
+
+<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="js/materialize.js"></script>
+<script type="text/javascript" src="js/nav.js"></script>
+<script type="text/javascript" src="js/order.js"></script>
+</body>
+</html>

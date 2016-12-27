@@ -1,0 +1,185 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>火fei车ji票管理系统</title>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/materialize.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+
+    <header>
+        <nav class="nav">
+            <div class="nav-wrapper container">
+                <a href="#" class="brand-logo">火车票订票系统</a>
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="index.html"><i class="material-icons right">exit_to_app</i><span class="welcome-username">Logout</span></a></li>
+                </ul>
+                <ul class="side-nav" id="mobile-demo">
+                    <li><a href="index.html"><i class="material-icons right">exit_to_app</i><span class="welcome-username">Logout</span></a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+
+            <ul class="collapsible" data-collapsible="accordion">
+                <li>
+                    <div class="collapsible-header active"><i class="material-icons">info_outline</i>管理车次信息</div>
+                    <div class="collapsible-body">
+                        <p>此处为所有列车车次列表，管理员可以添加，编辑或删除车次信息。</p>
+                    </div>
+                </li>
+            </ul>
+
+            <table class="highlight bordered centered">
+                <thead>
+                    <tr>
+                        <th data-field="trainNum">车次</th>
+                        <th data-field="departure">始发站</th>
+                        <th data-field="arrival">终点站</th>
+                        <th data-field="departTime">始发时间</th>
+                        <th data-field="arriveTime">到站时间</th>
+                        <th data-field="remain">座位数量</th>
+                    </tr>
+                </thead>
+
+                <tbody id="table-content">
+                </tbody>
+            </table>
+
+            <!-- Modal Structure -->
+            <div id="add-modal" class="modal modal-fixed-footer">
+                <div class="modal-content">
+                    <h5>添加车次信息</h5>
+                    <p>请注意一次天降来回两次列车，列车号相差1</p>
+                    <div class="row">
+                        <div class="input-field col s6 m6">
+                            <input id="add-trainNum" type="text" class="validate">
+                            <label for="add-trainNum">车次</label>
+                        </div>
+
+                        <div class="input-field col s6 m3">
+                            <input id="add-remain" type="text" class="validate">
+                            <label for="add-remain">座位数量</label>
+                        </div>
+                        <div class="input-field col s12 m6">
+                            <select id="add-departure-option">
+                                    </select>
+                            <label>选择始发站</label>
+                        </div>
+
+                        <div class="input-field col s6 m6">
+                            <input id="add-departTime" type="text" class="validate">
+                            <label for="add-departTime">始发时间</label>
+                        </div>
+
+                        <div class="input-field col s12 m6">
+                            <select id="add-arrival-option">
+                                    </select>
+                            <label>选择终点站</label>
+                        </div>
+
+                        <div class="input-field col s6 m6">
+                            <input id="add-arriveTime" type="text" class="validate">
+                            <label for="add-arriveTime">到站时间</label>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <a href="#!" class=" modal-action modal-close waves-effect btn-flat" id="confirm-add">确认</a>
+                </div>
+            </div>
+            <div id="edit-modal" class="modal modal-fixed-footer">
+                <div class="modal-content">
+                    <h5>编辑车次信息</h5>
+                    <p>记得编辑返程车的信息</p>
+                    <div class="row">
+                        <div class="input-field col s6 m6">
+                            <input id="edit-trainNum" type="text" class="validate">
+                            <label for="edit-trainNum">车次</label>
+                        </div>
+
+                        <div class="input-field col s6 m3">
+                            <input id="edit-remain" type="text" class="validate">
+                            <label for="edit-remain">座位数量</label>
+                        </div>
+                        <div class="input-field col s12 m6">
+                            <select id="edit-departure-option">
+                                    </select>
+                            <label>选择始发站</label>
+                        </div>
+
+                        <div class="input-field col s6 m6">
+                            <input id="edit-departTime" type="text" class="validate">
+                            <label for="edit-departTime">始发时间</label>
+                        </div>
+
+                        <div class="input-field col s12 m6">
+                            <select id="edit-arrival-option">
+                                    </select>
+                            <label>选择终点站</label>
+                        </div>
+
+                        <div class="input-field col s6 m6">
+                            <input id="edit-arriveTime" type="text" class="validate">
+                            <label for="edit-arriveTime">到站时间</label>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <a href="#!" class=" modal-action modal-close waves-effect btn-flat" id="confirm-edit">确认</a>
+                </div>
+            </div>
+        </div>
+        <a href="#add-modal" class="btn-floating btn-large waves-effect waves-light" id="FAT-corner"><i class="material-icons">add</i></a>
+    </main>
+
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">System Info</h5>
+                    <p class="grey-text text-lighten-4">This is a train ticket booking system, but the model is nearer to flight ticket booking system. The main
+                        purpose of this system is to build a sell system with SQL.</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Links</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="http://materializecss.com">Materialize</a></li>
+                        <li><a class="grey-text text-lighten-3" href="http://jquery.com">jQuery</a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://www.apachefriends.org/zh_cn/index.html">XAMPP</a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://material.io">Material Design</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                © 2016 杨林青 李铖昊 易鑫
+                <a class="grey-text text-lighten-4 right" href="https://github.com/LinkinYoung/SQL-Train-Ticket">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+
+    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.js"></script>
+    <script type="text/javascript" src="js/nav.js"></script>
+    <script type="text/javascript" src="js/admin.js"></script>
+    <script type="text/javascript" src="js/footer.js"></script>
+</body>
+
+</html>
