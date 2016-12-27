@@ -28,7 +28,7 @@
 		    $stmt = $dbh->prepare("SELECT * FROM station");
 		}
 		else{
-		    $stmt = $dbh->prepare("SELECT arrival AS station FROM train WHERE departure = :station ");
+		    $stmt = $dbh->prepare("SELECT DISTINCT arrival AS station FROM train WHERE departure = :station");
 			$stmt->bindParam(':station', $station);
 			$station = $stat;
 		}
