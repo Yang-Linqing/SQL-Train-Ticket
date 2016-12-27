@@ -16,8 +16,8 @@ $(document).ready(function () {
             $("#table-content").append(row);
         }
         $(".chooseRefund").click(function(){
-            localStorage.refundTrainNum = $(this).parent().siblings('.train-num-display').html();
-            localStorage.refundDate = $(this).parent().siblings('.date-display').html();
+            localStorage.refundTrainNum = $(this).parent().parent().siblings('.train-number-display').html();
+            localStorage.refundDate = $(this).parent().parent().siblings('.date-display').html();
             refund($(this));
         });
         FATinit();

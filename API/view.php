@@ -18,7 +18,7 @@
 	try{
 		$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		$stmt = $dbh->prepare("SELECT train.trainNum,date,departure,departTime,arrival,arrivTime FROM  orders,train WHERE train.trainNum = orders.trainNum AND userName = :userName");
+		$stmt = $dbh->prepare("SELECT train.trainNum,date,departure,departTime,arrival,arriveTime FROM  orders,train WHERE train.trainNum = orders.trainNum AND userName = :userName");
 		$stmt->bindParam(':userName', $userName);
 		$userName = $_SESSION['userName'];
 		$stmt->execute();
@@ -27,7 +27,7 @@
   
     $result = array();
     $result['result'] = 'success';
-    $result['train'] = $train;
+    $result['order'] = $train;
     print(json_encode($result));
 	 
 	}catch (Exception $e) { 

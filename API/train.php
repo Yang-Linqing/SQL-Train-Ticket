@@ -3,10 +3,10 @@
 
     session_start();
 
-    //if (!isset($_SESSION['userName']) || empty($_SESSION['userName'])) {
-	//	print('{"result": "Forbidden"}');
-    //    die();
-    //}
+    if (!isset($_SESSION['userName']) || empty($_SESSION['userName'])) {
+		print('{"result": "Forbidden"}');
+        die();
+    }
 
 	if (!isset($_GET['departure']) || empty($_GET['departure'])) {
         die();
@@ -33,8 +33,7 @@
 		$depar=$_GET['departure'];
 		$term=$_GET['terminal'];
 		$da=$_GET['date'];
---------------------
-		$stmt = $dbh->prepare("SELECT trainNum,departure,departTime,arrival,arrivTime,price FROM train WHERE departure = :departure AND arrival = :terminal ");
+		$stmt = $dbh->prepare("SELECT trainNum, :date AS date, departure,departTime,arrival,arriveTime,price, total - IFNULL(sum, 0) AS remain FROM train LEFT OUTER JOIN dailyTotal USING(trainNum) WHERE departure = :departure AND arrival = :terminal ");
 		$stmt->bindParam(':departure', $departure);
 		$stmt->bindParam(':terminal', $terminal);
 		$stmt->bindParam(':date', $date);
@@ -44,11 +43,10 @@
 
 		$stmt->execute();
 
-		$trainDate = $stmt->fetchALL(PDO::FETCH_ASSOC);
+		$trainData = $stmt->fetchALL(PDO::FETCH_ASSOC);
 		print(json_encode($trainData));
 	
 	}catch (Exception $e) { 
-       $dbh->rollBack(); 
        print('{"result":"Failed"}'); 
        print($e->getMessage()); 
 	}
