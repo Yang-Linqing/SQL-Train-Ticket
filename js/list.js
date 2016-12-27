@@ -4,19 +4,23 @@ $(document).ready(function () {
     $.getJSON("API/view.php", function(data){
         var row;
         for(i in data.order){
-            row = '<li><div class="collapsible-header"><i class="material-icons">info_outline</i>'
-                + data.order[i].trainNum + '</div><div class="collapsible-body">'
-                + '<div class="row"><div class="col s12">' + "日期" + data.order[i].date
-                + '</div></div>'
-                + '<div class="row"><div class="col s6">' + "始发站" + data.order[i].departure
-                + '</div><div class="col s6">' + "终点站" + data.order[i].arrival 
-                + '</div></div>'
-                + '<div class="row"><div class="col s6">' + "出发时间" + data.order[i].departTime
-                + '</div><div class="col s6">' + "到达时间" + data.order[i].arriveTime
-                + '</div></div>' + '<a class="waves-effect waves-teal btn-flat">退票</a>'
-                + '</div></li>';
+            row = '<tr><td>' + data.order[i].trainNum 
+                + '</td><td>' + data.order[i].date
+                + '</td><td>' + data.order[i].departure
+                + '</td><td>' + data.order[i].arrival 
+                + '</td><td>' + data.order[i].departTime
+                + '</td><td>' + data.order[i].arriveTime 
+                + '</td><td>' + data.order[i].total
+                + '</td><td>' + '<a class="btn-floating btn waves-effect waves-light red"><i class="material-icons" id="refund">delete</i></a>'
+                + '</td></tr>';
 
-            $("#orderList").append(row);
+            $("#table-content").append(row);
         }
     });
+
+    $("#refund").click(refund);
 });
+
+function refund(){
+    
+}

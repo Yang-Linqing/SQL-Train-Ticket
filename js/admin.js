@@ -1,14 +1,18 @@
 $(document).ready(function () {
     $('.modal').modal();
-
+    $('.collapsible').collapsible();
     $.getJSON("API/list.php", function(data) {
         var row;
         for (i in data.train) {
-            row = '<tr><td>' + data.train[i].trainNum + '</td><td>' + data.train[i].departure
-                + '</td><td>' + data.train[i].arrival + '</td><td>' + data.train[i].departTime
-                + '</td><td>' + data.train[i].arriveTime + '</td><td>' + data.train[i].total
-                + '</td><td>' + '<a class="btn-floating btn waves-effect waves-light red"><i class="material-icons">mode_edit</i></a>'
-                + '</td><td>' + '<a class="btn-floating btn waves-effect waves-light blue"><i class="material-icons">delete</i></a>'
+            row = '<tr><td>' + data.train[i].trainNum 
+                + '</td><td>' + data.train[i].date 
+                + '</td><td>' + data.train[i].departure
+                + '</td><td>' + data.train[i].arrival 
+                + '</td><td>' + data.train[i].departTime
+                + '</td><td>' + data.train[i].arriveTime 
+                + '</td><td>' + data.train[i].total
+                + '</td><td>' + '<a class="btn-floating btn waves-effect waves-light blue"><i class="material-icons">mode_edit</i></a>'
+                + '</td><td>' + '<a class="btn-floating btn waves-effect waves-light red"><i class="material-icons">delete</i></a>'
                 + '</td></tr>';
         $("#table-content").append(row);
         }

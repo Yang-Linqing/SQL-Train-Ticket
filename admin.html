@@ -29,11 +29,21 @@
 
     <main>
         <div class="container">
-            <!-- Page Content goes here -->
+
+            <ul class="collapsible" data-collapsible="accordion">
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">info_outline</i>管理车次信息</div>
+                    <div class="collapsible-body">
+                    <p>此处为所有列车车次列表，管理员可以添加，编辑或删除车次信息。</p>
+                    </div>
+                </li>
+            </ul>
+
             <table class="highlight bordered centered">
                 <thead>
                     <tr>
                         <th data-field="trainNum">车次</th>
+                        <th data-field="date">日期</th>
                         <th data-field="departure">始发站</th>
                         <th data-field="arrival">终点站</th>
                         <th data-field="departTime">始发时间</th>
