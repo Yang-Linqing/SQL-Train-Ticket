@@ -25,6 +25,15 @@ $(document).ready(function () {
             localStorage.editTotal = $(this).parent().siblings('.totalList').html();
             prepareEdit();
         });
+        $('.delete-button').click(function() {
+            localStorage.editTrainNum = $(this).parent().siblings('.trainNumList').html();
+            localStorage.editDeparture = $(this).parent().siblings('.departureList').html();
+            localStorage.editArrival = $(this).parent().siblings('.arrivalList').html();
+            localStorage.editDepartTime = $(this).parent().siblings('.departTimeList').html();
+            localStorage.editArriveTime = $(this).parent().siblings('.arriveTimeList').html();
+            localStorage.editTotal = $(this).parent().siblings('.totalList').html();
+            adminDelete($(this));
+        });
         FATinit();
     });
 
@@ -41,7 +50,6 @@ $(document).ready(function () {
 
     $('#confirm-add').click(adminAdd);
     $('#confirm-edit').click(adminUpdate);
-    $('#confirm-delete').click(adminDelete);
 });
 
 function adminAdd() {
@@ -109,19 +117,20 @@ function adminUpdate() {
     });
 }
 
-function adminDelete() {
+function adminDelete(button) {
     $.ajax({
         type: "POST",
         url: "API/delete.php",
         dataType: "json",
         data: {
-            "trainNum": $('.input-trainNum').html(),
+            "trainNum": localStorage.editTrainNum
         },
         success: function (data) {
             if (data.result == "success") {
-                $('.confirm-delete').click(function(){
-                    $(this).parents("tr").remove();
-                });
+                button.children('i').html("check_circle");
+                setTimeout(function() {
+                    button.parents("tr").remove();
+                }, 1000);
             }
             else Materialize.toast("删除失败", 6000);
         },
