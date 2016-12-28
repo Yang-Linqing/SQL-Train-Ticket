@@ -91,8 +91,7 @@
 		}
 	}catch (Exception $e) { 
        $dbh->rollBack(); 
-       print('{"result":"Failed"}'); 
-       print($e->getMessage()); 
+       print('{"result":"fail"}');
 	}
 	
 

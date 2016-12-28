@@ -33,7 +33,7 @@
 		$depar=$_GET['departure'];
 		$term=$_GET['terminal'];
 		$da=$_GET['date'];
-		$stmt = $dbh->prepare("SELECT trainNum, :date AS date, departure,departTime,arrival,arriveTime,price, total - IFNULL(sum, 0) AS remain FROM train LEFT OUTER JOIN dailyTotal USING(trainNum) WHERE departure = :departure AND arrival = :terminal ");
+		$stmt = $dbh->prepare("SELECT train.trainNum, :date AS date, departure,departTime,arrival,arriveTime,price, total - IFNULL(sum, 0) AS remain FROM train LEFT OUTER JOIN dailyTotal ON(train.trainNum = dailyTotal.trainNum AND dailyTotal.date = :date) WHERE departure = :departure AND arrival = :terminal ");
 		$stmt->bindParam(':departure', $departure);
 		$stmt->bindParam(':terminal', $terminal);
 		$stmt->bindParam(':date', $date);
