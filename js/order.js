@@ -5,9 +5,14 @@ $(document).ready(function() {
         for(i in data) {
             var item = '<div class="col s4 m2"><a href="#" class="departure-selection">' + data[i].station + '</a></div>'
             $('#departure-select').append(item);
+            var item = '<div class="col s4 m2"><a href="#" class="arrival-selection">' + data[i].station + '</a></div>'
+            $('#arrival-select').append(item);
         }
         $('.departure-selection').click(function() {
             selectArrival($(this).html());
+        });
+        $('.arrival-selection').click(function() {
+            selectDate($(this).html());
         });
     });
     $('.datepicker').pickadate({
@@ -21,22 +26,9 @@ $(document).ready(function() {
 function selectArrival(departure) {
     localStorage.departure = departure;
     $('#departure-show').html(": " + departure);
-    $('.arrival-selection').parent().remove();
     $('#select-departure').removeClass("active");
+    $('#select-arrival').addClass("active");
     $('.collapsible').collapsible();
-    $.getJSON("API/station.php",{
-        "station": departure
-    }, function(data) {
-        for(i in data) {
-            var item = '<div class="col s4 m2"><a href="#" class="arrival-selection">' + data[i].station + '</a></div>'
-            $('#arrival-select').append(item);
-        }
-        $('.arrival-selection').click(function() {
-            selectDate($(this).html());
-        });
-        $('#select-arrival').addClass("active");
-        $('.collapsible').collapsible();
-    });
 }
 
 function selectDate(arrival) {
